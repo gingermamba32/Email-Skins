@@ -1,0 +1,63 @@
+//Before this: Change out all banners, Prices for OE/proseries, Remove Liquidation/StockingStuffers
+//CHNAGE UPSELL FOR BRUSH - $6.65
+
+
+******************************* GIFT CARDS FOR Purchases During BF *****************************
+
+SELECT users.uid, users.fname, users.lname, users.phone, users.email, orders.subtotal_amount
+FROM orders
+INNER JOIN users ON orders.uid = users.uid
+WHERE orders.place_date
+BETWEEN '2015-11-26 16:00:00'
+AND '2015-11-26 23:00:00'
+AND orders.subtotal_amount BETWEEN 100 AND 149.99
+
+
+//(dates and times will be changed)
+*************************************** DISABLE PROMO CODES ******************************
+
+UPDATE promo_codes
+SET date_stop = '2018-11-01 12:00:00' 
+WHERE pid IN (43,44,45,50,58);
+
+
+
+****************************************** TURN OFF PRODUCTS *********************************
+
+********** HAIR/CLIP-INS/KITS/EDUCATION/BEADS/TOOLS/TECHDIVA/PROSERIES/LIQUIDATION *****************
+UPDATE products
+SET is_hotdeal = 'No'
+WHERE price2 > price
+AND price2 <> 0
+
+//WHERE cid IN (56,22,23,71,24,61,19,20,73,72,66,65,64,63,62, 45,46,30,27,5,4,59,2, 85, 76, 28, 87,88,76);
+
+UPDATE products 
+SET price = price2
+WHERE cid IN (56,22,23,71,24,61,19,20,73,72,66,65,64,63,62, 45,46,30,27,5,4,59,2, 85, 76, 28, 87,88,76);
+
+UPDATE products
+SET price2 = 0
+WHERE cid IN (56,22,23,71,24,61,19,20,73,72,66,65,64,63,62, 45,46,30,27,5,4,59,2, 85, 76, 28, 87,88,76);
+
+
+**************************************** CHANGE HAIR EXTENSION KITS BACK TO SITE PRICE ************************
+
+UPDATE products
+SET price = 120
+WHERE pid = 2;
+
+UPDATE products
+SET price = 175
+WHERE pid = 3;
+
+UPDATE products
+SET price = 115
+WHERE pid = 564;
+
+UPDATE products
+SET price = 245
+WHERE pid = 12;
+
+
+
