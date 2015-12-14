@@ -1,0 +1,3 @@
+SELECT users.uid, users.fname, users.lname, users.email, users.phone, orders.subtotal_amount FROM `orders` 
+INNER JOIN orders.uid = users.uid
+WHERE order_num IN ( 138976,139327,139593,139678,139679,122385,123385,123561,123736,140117,140151,140149,140158,140161,123817,140210,140215,140227,140230,123843,140249)
